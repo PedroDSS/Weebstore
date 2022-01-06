@@ -11,7 +11,7 @@
     {% if mangas|length == 0 %}
         <h2>{% trans "Oops ! Il semblerais que l'on soit a court de marchandises ici.. Revenez plus tard ou visitez d'autres coins du site !" %}</h2>
     {% endif %}
-    <div class="mangas-gallery-container">
+    <div class="products-gallery-container">
         {% for manga in mangas %}
             {% include "manga-bloc-item.html" %}
         {% endfor %}

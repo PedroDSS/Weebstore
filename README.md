@@ -11,4 +11,14 @@ TODO LIST:
 
 
 SETUP PROJECT:
-* 
+* Pour initialiser le projet il faut:
+- Installer Python 3
+- Si le projet le demande installer Django
+- Executer un python3 manage.py migrate
+- Pour lancer le serveur python3 manage.py runserver
+
+
+
+* To connect in django admin 127.0.0.1/admin 
+    Username : admin
+    password : Projet3wa!

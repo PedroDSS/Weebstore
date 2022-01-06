@@ -1,21 +1,21 @@
 {% load static %}
 {% load i18n %}
 
-<div class="manga-container searchable" data-id="{{figurine.id}}" data-name="{{figurine}}">
-    <div class="manga-image-container">
+<div class="product-container searchable" data-id="{{figurine.id}}" data-name="{{figurine}}">
+    <div class="product-image-container">
         <img src="{{figurine.get_picture_url}}" />
     </div>
-    <div class="manga-title-container">
+    <div class="product-title-container">
         <span>{{figurine.name}} {{figurine.collection}} </span>
     </div>
-    <div class="manga-price-container">
+    <div class="product-price-container">
         <span>{{figurine.price}}€</span>
     </div>
-    <div class="manga-rate-container">
+    <div class="product-rate-container">
         <span>{{figurine.rate}}</span> 
     </div>
-    <div class="manga-action-container">
-        <div class="manga-buttons-container">
+    <div class="product-action-container">
+        <div class="product-buttons-container">
             <a href="{% url 'figurine-details' figurine.name figurine.id %}" >{% trans "Plus de détails" %}</a>
         </div>
     </div>

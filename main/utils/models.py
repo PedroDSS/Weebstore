@@ -28,10 +28,6 @@ def rename_file(instance, filename):
         folder = "mangas/picture"
     if isinstance(instance, Figurine):
         folder = "figurines/picture"
-    # elif isinstance(instance, Cosplays):
-    #     folder = "cosplays/picture"
-    # if isinstance(instance, Supply):
-    #     folder = "supply/picture"
     else:
         folder = "other"
 

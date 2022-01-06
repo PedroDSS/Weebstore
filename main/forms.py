@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib import messages
-from .models import User, Manga, Figurine, ShoppingCart
+from .models import User, Manga, Figurine
+from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext
 
 
 class RegisterForm(forms.ModelForm):
@@ -22,10 +24,34 @@ class RegisterForm(forms.ModelForm):
         # Check if password_confirmation is same as the original password
         if password != password_confirmation:
             raise forms.ValidationError("This password confirmation doesn't match with password.")
+        if password:
+            msgs_error = []
+            # Password length > 8 character
+            if len(password) < 8:
+                msgs_error.append(gettext("au moins 8 caractères"))
+            if len(password) > 32:
+                msgs_error.append(gettext("moins de 32 caractères"))
+            # Password have at least 1 number
+            if not any(char.isdigit() for char in password):
+                msgs_error.append(gettext("un Nombre"))
+            # Password have at least 1 Uppercase
+            if not any(char.isupper() for char in password):
+                msgs_error.append(gettext("une Majuscule"))
+            # Password have at least 1 Lowercase
+            if not any(char.islower() for char in password):
+                msgs_error.append(gettext("une Minuscule"))
+            # Password have at least 1 character that is not alphanumeric or digital
+            if not any(not char.isalpha() and not char.isdigit() for char in password):
+                msgs_error.append(gettext("un caractère spéciale"))
+            # Password have whitespace
+            if any(char.isspace() for char in password):
+                msgs_error.append(gettext("aucun espace"))
+            if msgs_error:
+                raise forms.ValidationError(_("Le mot de passe doit contenir: ")+", ".join(msgs_error)+".")
         return cleaned_data
 
     def clean_email(self):
-        email = self.cleaned_data['email']
+        email = self.cleaned_data['email'].lower()
         try:
             # If user doesn't exist make exception
             if User.objects.get(email=email):
@@ -48,7 +74,7 @@ class LoginForm(forms.Form):
 
     def clean(self):
         cleaned_data = super(LoginForm, self).clean()
-        email = self.cleaned_data['email']
+        email = self.cleaned_data['email'].lower()
         password = self.cleaned_data['password']
         try:
             # If user exist in database

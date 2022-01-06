@@ -57,7 +57,8 @@ def register(request):
 def index(request):
     # Send objects to context
     mangas = Manga.objects.all()
-    return render(request, 'home.html', {"mangas": mangas})
+    figurines = Figurine.objects.all()
+    return render(request, 'home.html', {"mangas": mangas, "figurines": figurines})
 
 
 @is_connected(need_login=True)

@@ -7,15 +7,15 @@
 {% block content %}
 <div class="sub-container full">
     <h1>{{figurine.name}}</h1>
-    <div class="manga-details-container">
-        <div class="left-manga-details">
+    <div class="product-details-container">
+        <div class="left-product-details">
             <img src="{{figurine.get_picture_url}}">
         </div>
-        <div class="mid-manga-details">
+        <div class="mid-product-details">
             <h3>{% trans "Description" %}</h3>
             <p>{{figurine.description}}</p>
         </div>
-        <div class="right-manga-details">
+        <div class="right-product-details">
             <div class="product-options">
                 <h2>{% trans "Prix :" %} {{figurine.price}}</h2>
                 {% if figurine.quantity > 0 %}

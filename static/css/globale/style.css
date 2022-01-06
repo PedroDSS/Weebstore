@@ -228,7 +228,7 @@ a {
     margin-right: auto;
 }
 
-.connected .high-rated-content, .connected .new-content, .connected .incoming-content, .connected .mangas-gallery-container {
+.connected .high-rated-content, .connected .new-content, .connected .incoming-content, .connected .products-gallery-container {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
@@ -238,7 +238,7 @@ a {
     margin-left: auto;
 }
 
-.manga-container {
+.product-container {
     height: 18.75rem;
     max-height: 18.75rem;
     border: 1px solid var(--secondary-color);
@@ -246,12 +246,12 @@ a {
     background-color: var(--basic-color);
 }
 
-.manga-container .manga-image-container {
+.product-container .product-image-container {
     height: 9.375rem;
     max-height: 9.375rem;
 }
 
-.manga-container .manga-image-container img {
+.product-container .product-image-container img {
     max-height: 100%;
     max-width: 100%;
     border-radius: 0.75rem;
@@ -260,7 +260,7 @@ a {
     display: block;
 }
 
-.manga-container .manga-title-container {
+.product-container .product-title-container {
     display: block;
     margin-bottom: 0.625rem;
     margin-left: auto;
@@ -270,54 +270,65 @@ a {
     width: 85%;
 }
 
-.manga-container .manga-author-container {
+.product-container .product-author-container {
     margin-top: 1.25rem;
     text-align: end
 }
 
-.manga-container .manga-author-container span {
+.product-container .product-author-container span {
     font-style: italic;
     margin-right: 1.25rem;
 }
 
-.manga-container .manga-rate-container span {
+.product-container .product-rate-container span {
     margin-left: 1.25rem;
 }
 
-.manga-container .manga-price-container {
+.product-container .product-price-container {
     margin-bottom: 0.625rem;
 }
 
-.manga-container .manga-price-container span {
+.product-container .product-price-container span {
     margin-left: 1.25rem;
 }
 
-.manga-container .manga-buttons-container {
+.product-container .product-buttons-container {
     margin-top: 0.625rem;
     display: flex;
     justify-content: space-around;
 }
 
-.manga-details-container {
+.product-container .product-buttons-container a {
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+.product-container .product-buttons-container a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: var(--red);
+}
+
+.product-details-container {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
 }
 
-.manga-details-container img {
+.product-details-container img {
     max-height: 30.5rem;
     max-width: 25rem;
 }
 
-.left-manga-details, .mid-manga-detail {
+.left-product-details, .mid-product-detail {
     text-align: center;
 }
 
-.mid-manga-details {
+.mid-product-details {
     display: inline-block;
 }
 
-.mid-manga-details span {
+.mid-product-details span {
     border: 2px solid grey;
     padding: 3px;
     border-radius: 0.625rem;
@@ -523,11 +534,11 @@ a {
 
 /* ---------- Tablet ---------- */
 @media (min-width:801px) {
-    .connected .high-rated-content, .connected .new-content, .connected .incoming-content, .connected .mangas-gallery-container {
+    .connected .high-rated-content, .connected .new-content, .connected .incoming-content, .connected .products-gallery-container {
         grid-template-columns: 1fr 1fr;
     }
 
-    .manga-details-container {
+    .product-details-container {
         grid-template-columns: 1fr 2fr;
     }
 
@@ -539,11 +550,11 @@ a {
         display: block;
     }
 
-    .left-manga-details, .mid-manga-detail {
+    .left-product-details, .mid-product-detail {
         text-align: initial;
     }
 
-    .right-manga-details {
+    .right-product-details {
         grid-column: span 2;
     }
 
@@ -571,18 +582,18 @@ a {
         margin-right: 6rem;
     }
 
-    .connected .high-rated-content, .connected .new-content, .connected .incoming-content, .connected .mangas-gallery-container {
+    .connected .high-rated-content, .connected .new-content, .connected .incoming-content, .connected .products-gallery-container {
         grid-template-columns: 1fr 1fr 1fr 1fr;
         min-width: 90%;
     }
 
-    .manga-details-container {
+    .product-details-container {
         display: grid;
         grid-template-columns: 1fr 3fr 1fr;
         gap: 1rem;
     }
 
-    .right-manga-details {
+    .right-product-details {
         grid-column: initial;
     }
 
@@ -591,7 +602,7 @@ a {
 /* ---------- HD Desktop ---------- */
 
 @media (min-width:1750px) {
-    .connected .high-rated-content, .connected .new-content, .connected .incoming-content, .connected .mangas-gallery-container {
+    .connected .high-rated-content, .connected .new-content, .connected .incoming-content, .connected .products-gallery-container {
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         min-width: 90%;
     }

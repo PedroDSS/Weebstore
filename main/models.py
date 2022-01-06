@@ -18,7 +18,7 @@ class User(models.Model):
     first_name = models.CharField(max_length=64, null=True, blank=True)
     last_name = models.CharField(max_length=64, null=True, blank=True)
     email = models.EmailField(max_length=255, unique=True)
-    password = models.CharField(max_length=30)
+    password = models.CharField(max_length=32)
     # Important for login/logout
     token = models.CharField(max_length=128, blank=True, null=True, help_text="Auto-set on login via the interface and cleaned on logout")
     connected = models.DateTimeField(blank=True, null=True, help_text="The last connection date, used to check timeout of token")
