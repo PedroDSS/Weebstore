@@ -20,6 +20,7 @@ a {
     --red: #C3272B;
     --orange: #E35C38;
     --green: #407A52;
+    --blue: #003087;
     --basic-opacity: 0.9;
     --basic-radius: 2.813rem;
 }
@@ -87,10 +88,6 @@ a {
 
 .hide {
     display: none;
-}
-
-.bottom-info {
-    color: var(--basic-color);
 }
 
 /******* For Connected Base use class 'connected' ********/
@@ -308,10 +305,13 @@ a {
 }
 
 .manga-details-container img {
-    max-height: 37.5rem;
+    max-height: 30.5rem;
     max-width: 25rem;
 }
 
+.left-manga-details, .mid-manga-detail {
+    text-align: center;
+}
 
 .mid-manga-details {
     display: inline-block;
@@ -381,15 +381,19 @@ a {
 }
 
 .cart-table thead tr {
-    background-color: lightpink;
+    background-color: rgb(255, 218, 223);
 }
 
 .cart-table tbody tr:nth-child(2n+1) {
-    background-color: #ded4bb;
+    background-color: var(--basic-color);
 }
 
 .cart-table tbody tr:nth-child(2n) {
     background-color: #dedede;
+}
+
+.cart-table tfoot tr {
+    background-color: var(--basic-color);
 }
 
 .cart-table table td {
@@ -411,12 +415,52 @@ a {
 
 .cart-table .product-column img {
     height: 3.125rem;
+    display: none;
 }
 
 .cart-table .product-column span {
     margin-bottom: auto;
     margin-top: auto;
     margin-left: 0.9375rem;
+}
+
+.buy-options {
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.buy-options a {
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.buy-options .blue-card-button {
+    color: var(--basic-color);
+    background-color: var(--green);
+    border: 1px solid var(--green);
+    border-radius: 0.938rem;
+}
+
+.buy-options .paypal-button {
+    color: var(--basic-color);
+    background-color: var(--blue);
+    border: 1px solid var(--blue);
+    border-radius: 0.938rem;
+}
+
+
+.buy-options .blue-card-button:hover {
+    color: var(--green);
+    background-color: var(--basic-color);
+    cursor: pointer;
+}
+
+.buy-options .paypal-button:hover {
+    color: var(--blue);
+    background-color: var(--basic-color);
+    cursor: pointer;
 }
 
 .wishlist-button {
@@ -453,7 +497,31 @@ a {
     color: var(--orange);
 }
 
-/* Tablet */
+.bottom-info {
+    color: var(--basic-color);
+}
+
+.bottom-info .info-container {
+    display: grid;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bottom-info .info-container .contact {
+    color: var(--basic-color);
+}
+
+.bottom-info .info-container .contact:hover {
+    color: var(--red);
+    cursor: pointer;
+}
+
+.bottom-info .info-container a {
+    color: var(--basic-color);
+}
+
+/* ---------- Tablet ---------- */
 @media (min-width:801px) {
     .connected .high-rated-content, .connected .new-content, .connected .incoming-content, .connected .mangas-gallery-container {
         grid-template-columns: 1fr 1fr;
@@ -463,12 +531,30 @@ a {
         grid-template-columns: 1fr 2fr;
     }
 
+    .buy-options a {
+        margin-bottom: 0;
+    }
+
+    .cart-table .product-column img {
+        display: block;
+    }
+
+    .left-manga-details, .mid-manga-detail {
+        text-align: initial;
+    }
+
     .right-manga-details {
         grid-column: span 2;
     }
+
+    .buy-options {
+        display: flex;
+        width: 30rem;
+        justify-content: space-between;
+    }
 }
 
-/* Desktop */
+/* ---------- Desktop ---------- */
 
 @media (min-width:1281px) {
     .connected .page-header {
@@ -502,7 +588,7 @@ a {
 
 }
 
-/* HD Desktop */
+/* ---------- HD Desktop ---------- */
 
 @media (min-width:1750px) {
     .connected .high-rated-content, .connected .new-content, .connected .incoming-content, .connected .mangas-gallery-container {

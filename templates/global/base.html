@@ -23,7 +23,7 @@
             </div>
             <div class="header-searchbar">
                 <div class="searchbar">
-                    <input class="searchbar-input" placeholder="{% trans 'Rechercher' %}" oninput="search_from_text(this)" />
+                    <input id="searchbar" class="searchbar-input" placeholder="{% trans 'Rechercher' %}"/>
                 </div>
             </div>
             <div class="account-link-container">
@@ -61,7 +61,7 @@
                 <a href="{% url 'mangas-gallery' %}">{% trans "Mangas" %}</a>
             </div>
             <div class="product-link-subcontainer">
-                <span>{% trans "Figurines" %}</span>
+                <a href="{% url 'figurines-gallery' %}">{% trans "Figurines" %}</a>
             </div>
             <div class="product-link-subcontainer">
                 <span>{% trans "Nourritures" %}</span>
@@ -75,30 +75,42 @@
                 <!-- Content From another templates -->
             {% endblock %}
         </main>
+        
     </body>
     <footer>
         <div class="bottom-info">
-            Here is the footer for infos..
+            <div class="info-container">
+                <span>{% trans "Ce projet a été réalisé par Pedro DA SILVA SOUSA" %}</span>
+                <span id="contact-me" class="contact">{% trans "Me Contacter" %}</span>
+                <a class="copyright-link" href="">{% trans "Copyright © 2022 WeebStore.com - Tous droits réservés" %}</a>
+            </div>
         </div>
-    </footer>
-
-    <!-- The actual Toast -->
-    <script type="text/javascript">
-        {% if messages %}
+        
+        <!-- The actual Toast -->
+        <script type="text/javascript">
+            {% if messages %}
             {% for m in messages %}
-                toast_message("{{ m }}", {{m.level}});
+            toast_message("{{ m }}", {{m.level}});
             {% endfor %}
-        {% endif %}
-        {% if form.errors %}
+            {% endif %}
+            {% if form.errors %}
             {% for k, msgs in form.errors.items %}
-                {% for m in msgs %}
-                    {% if k == "__all__" %}
-                        toast_message("{{ m }}", 40);
-                    {% else %}
-                        toast_message("{{ k }} {{ m }}", 40);
-                    {% endif %}
-                {% endfor %}
+            {% for m in msgs %}
+            {% if k == "__all__" %}
+            toast_message("{{ m }}", 40);
+            {% else %}
+            toast_message("{{ k }} {{ m }}", 40);
+            {% endif %}
             {% endfor %}
-        {% endif %}
-    </script>
+            {% endfor %}
+            {% endif %}
+        </script>
+    
+        <!-- JS (bottom) -->
+
+        {% block js %}
+            <!-- Call specifics js files depending on what page we wanted to use -->
+        {% endblock %}
+
+    </footer>
 </html>

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib import messages
-from .models import User, Manga, ShoppingCart
+from .models import User, Manga, Figurine, ShoppingCart
 
 
 class RegisterForm(forms.ModelForm):
@@ -65,8 +65,6 @@ class LoginForm(forms.Form):
     def get_user(self):
         return self.user
 
-# class ProductForm(forms.ModelForm):
-
 
 class ShoppingAddForm(forms.Form):
     product_id = forms.IntegerField(widget=forms.HiddenInput())
@@ -76,10 +74,13 @@ class ShoppingAddForm(forms.Form):
         quantity = self.cleaned_data['quantity']
         id = self.cleaned_data['product_id']
         try:
-            manga = Manga.objects.get(id=id)
-            if quantity <= manga.quantity:
-                return quantity
-            else:
-                raise
+            try:
+                manga = Manga.objects.get(id=id)
+                if quantity <= manga.quantity:
+                    return quantity
+            except:
+                figurine = Figurine.objects.get(id=id)
+                if quantity <= figurine.quantity:
+                    return quantity
         except:
             raise forms.ValidationError('Cannot Add more than in stock quantity')

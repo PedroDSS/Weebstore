@@ -19,11 +19,6 @@ class User(models.Model):
     last_name = models.CharField(max_length=64, null=True, blank=True)
     email = models.EmailField(max_length=255, unique=True)
     password = models.CharField(max_length=30)
-    # address = models.TextField(blank=True, null=True, help_text="The adress of the user (used for the delivery)")
-    # favorite_product
-    # wishlist wishlist model
-    # money
-    # commented_products
     # Important for login/logout
     token = models.CharField(max_length=128, blank=True, null=True, help_text="Auto-set on login via the interface and cleaned on logout")
     connected = models.DateTimeField(blank=True, null=True, help_text="The last connection date, used to check timeout of token")
@@ -78,7 +73,7 @@ class Manga(ModelProductUtils):
         return f"{self.title} Volume n°{self.volume}"
 
 
-class Figurine(models.Model):
+class Figurine(ModelProductUtils):
     name = models.CharField(max_length=64, help_text="Name of the Figurine")
     collection = models.CharField(max_length=32, help_text="Name of the figurine collection")
     picture = models.FileField(upload_to=rename_file, null=True, blank=True, default=None, help_text="Either set a file here")
@@ -95,33 +90,32 @@ class Figurine(models.Model):
     def __str__(self):
         return f"{self.name} ({self.collection})"
 
-# class Commentary(models.Model):
-#     author=
-#     description=
-#     rate=
-#     date=
-
 
 class ShoppingItem(models.Model):
     shopping_cart = models.ForeignKey("ShoppingCart", on_delete=models.CASCADE, help_text="ShoppingCart")
-    manga = models.ForeignKey(Manga, on_delete=models.CASCADE, help_text="Manga we wanted to buy")
-    # figurine
-    # Supply etc....
+    manga = models.ForeignKey(Manga, null=True, on_delete=models.CASCADE, help_text="Manga we wanted to buy")
+    figurine = models.ForeignKey(Figurine, null=True, on_delete=models.CASCADE, help_text="Figurine we wanted to buy")
     quantity = models.IntegerField(default=1)
 
     def get_price(self):
         if self.manga:
             return self.manga.price * self.quantity
+        if self.figurine:
+            return self.figurine.price * self.quantity
         return 0
 
     def get_product_picture(self):
         if self.manga:
             return self.manga.get_picture_url()
+        if self.figurine:
+            return self.figurine.get_picture_url()
         return ""
 
     def __str__(self):
         if self.manga:
             return str(self.manga)
+        if self.figurine:
+            return str(self.figurine)
 
 
 class ShoppingCart(models.Model):
@@ -139,7 +133,7 @@ class ShoppingCart(models.Model):
         total_price = 0
         for product in products:
             total_price += product.get_price()
-        return f"{float(total_price)} €"
+        return f"{round(total_price, 2)} €"
 
     def get_all_products_quantity(self):
         products = self.get_all_products()
@@ -150,7 +144,3 @@ class ShoppingCart(models.Model):
 
     def __str__(self):
         return f"{self.user}'s Cart"
-
-    # class Delivery qui serais les commandes éffectuées par l'utilisateur
-
-    # class Author peut être pour ajouter une page d'autheur avec description et liste de mangas écrit par ce même auteur (dispo sur le site uniquement)

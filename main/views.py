@@ -6,17 +6,11 @@ from django.utils.translation import gettext_lazy as _
 from main.utils.user import login_user, logout_user
 from main.decorator.user import is_connected, is_not_connected
 from main.forms import RegisterForm, LoginForm, ShoppingAddForm
-from main.models import User, Manga, ShoppingCart, ShoppingItem
+from main.models import User, Manga, Figurine, ShoppingCart, ShoppingItem
 
 # params logger
 logger = logging.getLogger(__name__)
 
-
-@is_connected()
-def index(request):
-    # Send objects to context
-    mangas = Manga.objects.all()
-    return render(request, 'home.html', {"mangas": mangas})
 
 # Views for not logged
 
@@ -59,6 +53,13 @@ def register(request):
 # Views for logged
 
 
+@is_connected()
+def index(request):
+    # Send objects to context
+    mangas = Manga.objects.all()
+    return render(request, 'home.html', {"mangas": mangas})
+
+
 @is_connected(need_login=True)
 def logout(request):
     # Logout the current user
@@ -73,9 +74,15 @@ def mangas_gallery(request):
 
 
 @is_connected()
+def figurines_gallery(request):
+    figurines = Figurine.objects.all()
+    return render(request, 'figurines-gallery.html', {"figurines": figurines})
+
+
+@is_connected()
 def manga_details(request, manga_name, product_id):
     manga = Manga.objects.get(title=manga_name, id=product_id)
-    form = ShoppingAddForm(request.POST or None, initial={"product_id": product_id})  # category: category
+    form = ShoppingAddForm(request.POST or None, initial={"product_id": product_id, "type": "manga"})  # category: category
     if request.method == 'POST':
         try:
             if form.is_valid():
@@ -95,6 +102,29 @@ def manga_details(request, manga_name, product_id):
     return render(request, 'mangas-details.html', {"form": form, "manga": manga})
 
 
+@is_connected()
+def figurine_details(request, figurine_name, product_id):
+    figurine = Figurine.objects.get(name=figurine_name, id=product_id)
+    form = ShoppingAddForm(request.POST or None, initial={"product_id": product_id, "type": "figurine"})  # category: category
+    if request.method == 'POST':
+        try:
+            if form.is_valid():
+                # Get quantity to create Shopping item and get shoppingcart to add shoppingitem
+                # Try to get cart, if not connected redirect to login
+                try:
+                    cart = ShoppingCart.objects.get(user=request.user)
+                except Exception as err:
+                    messages.add_message(request, messages.ERROR, _("Vous devez être connecter pour effectuer cette action"))
+                    return redirect('login')
+                ShoppingItem.objects.create(shopping_cart=cart, figurine=figurine, quantity=form.cleaned_data['quantity'])
+                messages.add_message(request, messages.INFO, _("Vous avez ajouter votre article au panier avec succès"))
+                return redirect('index')
+        except Exception as err:
+            messages.add_message(request, messages.ERROR, _(f"Echec lors de l'envoi du formulaire a cause de : {err}."))
+            return redirect('index')
+    return render(request, 'figurines-details.html', {"form": form, "figurine": figurine})
+
+
 @is_connected(need_login=True)
 def shoppingcart(request):
     return render(request, 'shoppingcart-details.html')
@@ -108,5 +138,5 @@ def shoppingcart_delete_product(request, product_id):
         messages.add_message(request, messages.INFO, _("Le produit à bien été supprimer du panier"))
         return redirect('shoppingcart')
     except Exception as err:
-        pass
-    return redirect('index')
+        messages.add_message(request, messages.ERROR, _(f"Un problème est survenu lors de la suppression du produit car : {err}"))
+        return redirect('index')

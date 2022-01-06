@@ -1,16 +1,16 @@
-# Medias
-media
-.static
+# Medias Don't push for production
+# media
+#.static
 
-# Access
+# Access Don't push for production
 # access.py
 
 # Old files
 *.old
 
-# Database
-*.sqlite*
-*.db
+# Database Don't push for production
+# *.sqlite*
+# *.db
 
 # Python
 *.pyc

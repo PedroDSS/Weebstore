@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from .models import User, Manga, Theme, ShoppingCart, ShoppingItem
+from .models import User, Manga, Figurine, Theme, ShoppingCart, ShoppingItem
 
 
 class UserAdmin(admin.ModelAdmin):
@@ -34,6 +34,25 @@ class MangaAdmin(admin.ModelAdmin):
 admin.site.register(Manga, MangaAdmin)
 
 
+class FigurineAdmin(admin.ModelAdmin):
+    list_display = ['name', 'collection', 'price', 'quantity', 'rate', 'modified', 'created']
+    list_filter = ['collection']
+    search_fields = ['name', 'collection']
+
+    class Meta:
+        model = Figurine
+
+    def render_change_form(self, request, context, add=False, change=False, form_url='', obj=None, *args, **kwargs):
+        # According the page, we add specific .js file to context
+        if add or change:
+            context["media"] += forms.Media(css={"all": ("css/admin/selectize.min.css",)}, js=("js/admin/jquery.min.js",
+                                                                                               "js/admin/selectize.min.js", "js/admin/select.js"))
+        return super(FigurineAdmin, self).render_change_form(request=request, context=context, add=add, change=change, form_url=form_url, obj=obj)
+
+
+admin.site.register(Figurine, FigurineAdmin)
+
+
 class ThemeAdmin(admin.ModelAdmin):
     list_display = ['name']
     list_filter = []
@@ -54,6 +73,8 @@ class ShoppingItemAdmin(admin.ModelAdmin):
     def _item(self, obj):
         if obj.manga:
             return str(obj.manga)
+        if obj.figurine:
+            return str(obj.figurine)
 
 
 admin.site.register(ShoppingItem, ShoppingItemAdmin)

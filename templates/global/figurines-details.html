@@ -2,38 +2,30 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{% trans 'Mangas' %}{% endblock %}
+{% block title %}{% trans 'Figurines' %}{% endblock %}
 
 {% block content %}
 <div class="sub-container full">
-    <h1>{{manga.title}} {% trans "Volume n°" %}{{manga.volume}}</h1>
+    <h1>{{figurine.name}}</h1>
     <div class="manga-details-container">
         <div class="left-manga-details">
-            <img src="{{manga.get_picture_url}}">
-            <div class="manga-sub-details">
-                <p>{% trans "Auteur" %} : <span>{{manga.author}}</span></p>
-                <p>{% trans "Année de parution" %} : <span>{{manga.release}}</span></p>
-                <p>{% trans "Type" %} : <span>{{manga.category}}</span></p>
-            </div>
+            <img src="{{figurine.get_picture_url}}">
         </div>
         <div class="mid-manga-details">
-            {% for theme in manga.get_all_themes %}
-                <span>{{theme}}</span>
-            {% endfor %}
-            <h3>{% trans "Résumé" %}</h3>
-            <p>{{manga.description}}</p>
+            <h3>{% trans "Description" %}</h3>
+            <p>{{figurine.description}}</p>
         </div>
         <div class="right-manga-details">
             <div class="product-options">
-                <h2>{% trans "Prix :" %} {{manga.price}}</h2>
-                {% if manga.quantity > 0 %}
+                <h2>{% trans "Prix :" %} {{figurine.price}}</h2>
+                {% if figurine.quantity > 0 %}
                     <h2 class="product-has-stock">{% trans "En Stock" %}</h2>
-                    <h2>{% trans "Quantité :" %} {{manga.quantity}}</h2>
+                    <h2>{% trans "Quantité :" %} {{figurine.quantity}}</h2>
                     <form class="shoppingadd-form" method="post">
                         {% csrf_token %}
                         {{form.product_id}}
                         <select id="select-quantity" class="select-quantity-product">
-                            {% for i in manga.quantity_range %}
+                            {% for i in figurine.quantity_range %}
                                 <option value="{{forloop.counter}}">{{forloop.counter}}</option>
                             {% endfor %}
                         </select>

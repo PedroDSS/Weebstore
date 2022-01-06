@@ -21,11 +21,15 @@ urlpatterns = [
     path('shoppingcart/', views.shoppingcart, name="shoppingcart"),
     path('shoppingcart-delete/<int:product_id>/', views.shoppingcart_delete_product, name="shoppingcart-delete"),
 
-    # Products in Generals
 
+    # Products in Generals
 
     # Mangas
     path('mangas-gallery/', views.mangas_gallery, name="mangas-gallery"),
     path('manga-details/<str:manga_name>/<int:product_id>/', views.manga_details, name="manga-details"),
+
+    # Figurines
+    path('figurines-gallery/', views.figurines_gallery, name="figurines-gallery"),
+    path('figurines-details/<str:figurine_name>/<int:product_id>/', views.figurine_details, name="figurine-details"),
 
 ]

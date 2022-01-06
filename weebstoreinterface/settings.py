@@ -27,7 +27,7 @@ SECRET_KEY = 'zyct+3pe7#nfyk6cnvk0m-fr)9^&uta(chgqho-g@l)vjuf*+%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'http://local.weebstore.com']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -61,6 +61,7 @@ TEMPLATES = [
             'templates/connected',
             'templates/global',
             'templates/mangas',
+            'templates/figurines',
             'templates/not-connected',
             'templates/user',
         ],

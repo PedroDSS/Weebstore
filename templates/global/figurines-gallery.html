@@ -2,18 +2,18 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{% trans 'Mangas' %}{% endblock %}
+{% block title %}{% trans 'Figurines' %}{% endblock %}
 
 
 {% block content %}
 <div class="sub-container full">
-    <h1>{% trans "Mangas" %}</h1>
-    {% if mangas|length == 0 %}
+    <h1>{% trans "Figurines" %}</h1>
+    {% if figurines|length == 0 %}
         <h2>{% trans "Oops ! Il semblerais que l'on soit a court de marchandises ici.. Revenez plus tard ou visitez d'autres coins du site !" %}</h2>
     {% endif %}
     <div class="mangas-gallery-container">
-        {% for manga in mangas %}
-            {% include "manga-bloc-item.html" %}
+        {% for figurine in figurines %}
+            {% include "figurine-bloc-item.html" %}
         {% endfor %}
     </div>
 </div>

@@ -28,25 +28,29 @@
                 <!-- Content from other pages -->
             </main>
         {% endblock %}
-    </body>
 
-    <!-- The actual Toast -->
-    <script type="text/javascript">
-        {% if messages %}
-            {% for m in messages %}
-                toast_message("{{ m }}", {{m.level}});
-            {% endfor %}
-        {% endif %}
-        {% if form.errors %}
-            {% for k, msgs in form.errors.items %}
-                {% for m in msgs %}
-                    {% if k == "__all__" %}
-                        toast_message("{{ m }}", 40);
-                    {% else %}
-                        toast_message("{{ k }} {{ m }}", 40);
-                    {% endif %}
+        <!-- The actual Toast -->
+        <script type="text/javascript">
+            {% if messages %}
+                {% for m in messages %}
+                    toast_message("{{ m }}", {{m.level}});
                 {% endfor %}
-            {% endfor %}
-        {% endif %}
-    </script>
+            {% endif %}
+            {% if form.errors %}
+                {% for k, msgs in form.errors.items %}
+                    {% for m in msgs %}
+                        {% if k == "__all__" %}
+                            toast_message("{{ m }}", 40);
+                        {% else %}
+                            toast_message("{{ k }} {{ m }}", 40);
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+        </script>
+
+        {% block js %}
+            <script src="{% static 'js/main/product-details.js' %}"></script> 
+        {% endblock %}
+    </body>
 </html>

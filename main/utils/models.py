@@ -15,7 +15,7 @@ class ModelProductUtils(models.Model):
 
 
 def rename_file(instance, filename):
-    from main.models import Manga  # , Cosplays, Figurines, Supply, Other
+    from main.models import Manga, Figurine  # , Cosplays, Supply, Other
 
     # Filename
     ext = filename.split(".")[-1].lower()
@@ -26,10 +26,10 @@ def rename_file(instance, filename):
     # Get folder according instance
     if isinstance(instance, Manga):
         folder = "mangas/picture"
+    if isinstance(instance, Figurine):
+        folder = "figurines/picture"
     # elif isinstance(instance, Cosplays):
     #     folder = "cosplays/picture"
-    # if isinstance(instance, Figurines):
-    #     folder = "figurines/picture"
     # if isinstance(instance, Supply):
     #     folder = "supply/picture"
     else:
