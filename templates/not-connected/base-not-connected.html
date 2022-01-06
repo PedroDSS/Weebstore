@@ -1,0 +1,52 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %} | WeebStore </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="{% static 'src/weebstore_logo_black.png' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/globale/style.css' %}">
+        <link rel="stylesheet" href="{% static 'libs/toastr/toastr-2.1.3.min.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cardo&display=swap" rel="stylesheet">
+        <script type="text/javascript" src="{% static 'js/main/main.js' %}"></script>
+        <script type="text/javascript" src="{% static 'libs/jquery/jquery-3.2.1.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'libs/toastr/toastr-2.1.3.min.js' %}"></script>
+    </head>
+    <body class="not-connected">
+        <header class="page-header">
+            <div class="logo-container">
+                <a href="{% url 'index' %}"><img class="logo" src="{% static 'src/weebstore_logo_black.png' %}"/></a>
+            </div>
+        </header>
+
+        {% block content %}
+            <main class="container">
+                <!-- Content from other pages -->
+            </main>
+        {% endblock %}
+    </body>
+
+    <!-- The actual Toast -->
+    <script type="text/javascript">
+        {% if messages %}
+            {% for m in messages %}
+                toast_message("{{ m }}", {{m.level}});
+            {% endfor %}
+        {% endif %}
+        {% if form.errors %}
+            {% for k, msgs in form.errors.items %}
+                {% for m in msgs %}
+                    {% if k == "__all__" %}
+                        toast_message("{{ m }}", 40);
+                    {% else %}
+                        toast_message("{{ k }} {{ m }}", 40);
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+    </script>
+</html>

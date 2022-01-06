@@ -1,0 +1,26 @@
+# Medias
+media
+.static
+
+# Access
+# access.py
+
+# Old files
+*.old
+
+# Database
+*.sqlite*
+*.db
+
+# Python
+*.pyc
+
+# Tmp elements
+*_old.*
+*-old.*
+
+# Node modules
+node_modules/
+
+# Dev Tools
+.vscode

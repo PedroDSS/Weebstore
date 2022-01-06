@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans 'Accueil' %}{% endblock %}
+
+{% block content %}
+<div class="sub-container full">
+    <h1>{% trans "Les mieux notés" %}</h1>
+    <div class="high-rated-content">
+        {% for manga in mangas %}
+            {% include "manga-bloc-item.html" %}
+        {% endfor %}
+    </div>
+    <h1>{% trans "Nouveautés" %}</h1>
+    <div class="new-content">
+        <h2>{% trans "Aucune nouveauté.." %}</h2>
+    </div>
+    <h1>{% trans "Prochainement" %}</h1>
+    <div class="incoming-content">
+        <h2>{% trans "Aucun prochain produit.." %}</h2>
+    </div>
+</div>
+{% endblock %}

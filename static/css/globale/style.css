@@ -1,0 +1,512 @@
+/* Base Design */
+
+html, body {
+    margin: 0;
+    height: 100%;
+    font-family: 'Cardo', serif;
+}
+
+footer {
+    background-color: var(--secondary-color);
+}
+
+a {
+    display: block;
+}
+
+:root {
+    --basic-color: #ffffff;
+    --secondary-color: #000000;
+    --red: #C3272B;
+    --orange: #E35C38;
+    --green: #407A52;
+    --basic-opacity: 0.9;
+    --basic-radius: 2.813rem;
+}
+
+
+/* Mobile */
+
+/******* For Not Connected Base use class 'not-connected' ********/
+
+.not-connected {
+    background-image: url("../../src/japanese_background.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.not-connected .link-container {
+    width: 18.75rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7.5rem;
+}
+
+.not-connected .logo-container .logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+}
+
+.register-form, .login-form {
+    width: 18.75rem;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.25rem;
+    background-color: var(--basic-color);
+    border-radius: 1.875rem;
+    margin-top: 50px;
+    opacity: var(--basic-opacity);
+}
+
+.register-form input, .login-form input {
+    padding: 0.313rem;
+}
+
+.field p {
+    margin-bottom: 0.5em;
+}
+
+.submit-button {
+    background-color: var(--secondary-color);
+    color: var(--basic-color);
+    padding: 0.625rem;
+    border-radius: 1.875rem;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: var(--basic-color);
+    color: var(--secondary-color);
+}
+
+.hide {
+    display: none;
+}
+
+.bottom-info {
+    color: var(--basic-color);
+}
+
+/******* For Connected Base use class 'connected' ********/
+
+.connected {
+    background-image: url("../../src/sakura_background2.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.connected .page-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: var(--basic-color);
+    margin-left: auto;
+    margin-right: auto;
+    opacity: var(--basic-opacity);
+}
+
+.connected .page-header div {
+    text-align: center;
+}
+
+.connected .page-header .logo-container {
+    width: 100%;
+}
+
+.connected .header-searchbar {
+    width: 50%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.connected .header-searchbar .searchbar {
+    margin-top: 1.875rem;
+    margin-bottom: 1.875rem;
+}
+
+.connected .searchbar .searchbar-input {
+    height: 1.563rem;
+    width: 100%;
+}
+
+.connected .product-link-container {
+    display: flex;
+    flex-wrap: wrap;
+    color: var(--basic-color);
+    background-color: var(--secondary-color);
+    justify-content: space-evenly;
+    position: relative;
+}
+
+.connected .product-link-container a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    height: 100%;
+}
+
+.connected .product-link-subcontainer a {
+    transition: color 0.5s;
+}
+
+.connected .product-link-subcontainer:hover a {
+    color: var(--basic-color);
+}
+
+.connected .product-link-container .product-link-subcontainer {
+    height: 1.25rem;
+    margin-top: 0.625rem;
+    margin-bottom: 0.625rem;
+    text-align: center;
+    background-color: var(--basic-color);
+    color: var(--secondary-color);
+    border-radius: var(--basic-radius);
+    width: 6.25rem;
+    padding: 0.313rem;
+    opacity: var(--basic-opacity);
+    transition: background-color 0.5s, color 0.5s;
+}
+
+.connected .product-link-container .product-link-subcontainer:hover {
+    background-color: var(--red);
+    color: var(--basic-color);
+}
+
+.connected .product-link-container .product-link-subcontainer:hover {
+    cursor: pointer;
+}
+
+.connected .logo {
+    width: 18.75rem;
+    margin-top: 0.938rem;
+    margin-left: 0.938rem;
+}
+
+.connected .container {
+    background: rgba(255, 255, 255, var(--basic-opacity))
+}
+
+.connected .sub-container {
+    padding: 0.938rem;
+}
+
+.connected .full {
+    min-height: 100vh;
+}
+
+.account-link-container {
+    display: flex;
+    margin-top: auto;
+    margin-bottom: 2.5rem;
+}
+
+.account-link-container a {
+    text-decoration: none;
+    margin-left: 0.313rem;
+    text-align: center;
+    color: var(--secondary-color);
+    width: auto;
+    height: 2rem;
+    display: inline-grid;
+}
+
+.account-link-container a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.account-link-container div {
+    margin-right: 1.85rem;
+}
+
+.account-link-container svg {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.connected .high-rated-content, .connected .new-content, .connected .incoming-content, .connected .mangas-gallery-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 1.875rem 1.875rem;
+    width: 75%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.manga-container {
+    height: 18.75rem;
+    max-height: 18.75rem;
+    border: 1px solid var(--secondary-color);
+    border-radius: 0.625rem;
+    background-color: var(--basic-color);
+}
+
+.manga-container .manga-image-container {
+    height: 9.375rem;
+    max-height: 9.375rem;
+}
+
+.manga-container .manga-image-container img {
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 0.75rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.manga-container .manga-title-container {
+    display: block;
+    margin-bottom: 0.625rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    height: 1.25rem;
+    width: 85%;
+}
+
+.manga-container .manga-author-container {
+    margin-top: 1.25rem;
+    text-align: end
+}
+
+.manga-container .manga-author-container span {
+    font-style: italic;
+    margin-right: 1.25rem;
+}
+
+.manga-container .manga-rate-container span {
+    margin-left: 1.25rem;
+}
+
+.manga-container .manga-price-container {
+    margin-bottom: 0.625rem;
+}
+
+.manga-container .manga-price-container span {
+    margin-left: 1.25rem;
+}
+
+.manga-container .manga-buttons-container {
+    margin-top: 0.625rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.manga-details-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.manga-details-container img {
+    max-height: 37.5rem;
+    max-width: 25rem;
+}
+
+
+.mid-manga-details {
+    display: inline-block;
+}
+
+.mid-manga-details span {
+    border: 2px solid grey;
+    padding: 3px;
+    border-radius: 0.625rem;
+    background-color: lightgray;
+}
+
+
+.product-options h2 {
+    text-align: center;
+}
+
+.product-options .product-options-buttons {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 12.5rem;
+}
+
+.product-options .product-has-stock {
+    color: var(--green);
+}
+
+.product-options .product-has-no-stock {
+    color: var(--red);
+}
+
+.product-options .select-quantity-product {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.shoppingcart-button {
+    border: 1px solid var(--green);
+    background-color: var(--green);
+    color: var(--basic-color);
+    width: 100%;
+    font-size: 1em;
+    text-align: center;
+    margin-top: 1.25rem;
+    padding: 1.25rem;
+    border-radius: 0.938rem;
+    text-decoration: none;
+}
+
+.cart-table {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cart-table table {
+    margin: 0 auto;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.cart-table th {
+    border: 1px solid var(--secondary-color);
+    padding: 0.625rem;
+}
+
+.cart-table thead tr {
+    background-color: lightpink;
+}
+
+.cart-table tbody tr:nth-child(2n+1) {
+    background-color: #ded4bb;
+}
+
+.cart-table tbody tr:nth-child(2n) {
+    background-color: #dedede;
+}
+
+.cart-table table td {
+    border: 1px solid var(--secondary-color);
+    padding: 0.625rem;
+}
+
+.cart-table table td a {
+    text-decoration: none;
+    color: var(--red);
+}
+
+.cart-table .product-column {
+    display: flex;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+}
+
+.cart-table .product-column img {
+    height: 3.125rem;
+}
+
+.cart-table .product-column span {
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-left: 0.9375rem;
+}
+
+.wishlist-button {
+    text-align: center;
+    margin-top: 1.25rem;
+    padding: 1.25rem;
+    border-radius: 0.938rem;
+    text-decoration: none;
+}
+
+.shoppingcart-button:hover, .wishlist-button:hover {
+    cursor: pointer;
+}
+
+.shoppingcart-button {
+    border: 1px solid var(--green);
+    background-color: var(--green);
+    color: var(--basic-color);
+}
+
+.shoppingcart-button:hover {
+    background-color: var(--basic-color);
+    color: var(--green);
+}
+
+.wishlist-button {
+    border: 1px solid var(--orange);
+    background-color: var(--orange);
+    color: var(--basic-color);
+}
+
+.wishlist-button:hover {
+    background-color: var(--basic-color);
+    color: var(--orange);
+}
+
+/* Tablet */
+@media (min-width:801px) {
+    .connected .high-rated-content, .connected .new-content, .connected .incoming-content, .connected .mangas-gallery-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .manga-details-container {
+        grid-template-columns: 1fr 2fr;
+    }
+
+    .right-manga-details {
+        grid-column: span 2;
+    }
+}
+
+/* Desktop */
+
+@media (min-width:1281px) {
+    .connected .page-header {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .connected .page-header .logo-container {
+        width: auto;
+    }
+
+    .connected .header-searchbar {
+        margin-left: 6rem;
+        margin-right: 6rem;
+    }
+
+    .connected .high-rated-content, .connected .new-content, .connected .incoming-content, .connected .mangas-gallery-container {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        min-width: 90%;
+    }
+
+    .manga-details-container {
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+        gap: 1rem;
+    }
+
+    .right-manga-details {
+        grid-column: initial;
+    }
+
+}
+
+/* HD Desktop */
+
+@media (min-width:1750px) {
+    .connected .high-rated-content, .connected .new-content, .connected .incoming-content, .connected .mangas-gallery-container {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        min-width: 90%;
+    }
+}

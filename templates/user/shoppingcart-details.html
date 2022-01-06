@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans 'Mon Panier' %}{% endblock %}
+
+{% block content %}
+{% with cart=request.user.shoppingcart products=request.user.shoppingcart.get_all_products total_price=request.user.shoppingcart.get_total_price %}
+<div class="sub-container full">
+    <h1>{% trans "Mon Panier" %}</h1>
+    {% if products|length == 0 %}
+        <h2>{% trans "Il n'y a aucun produit dans votre panier !" %}</h2>
+    {% else %}
+    <div class="cart-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>{% trans 'Produit' %}</th>
+                    <th>{% trans 'Quantité' %}</th>
+                    <th>{% trans 'Prix' %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td class="product-column"><img src="{{product.get_product_picture}}"/> <span>{{product}}</span></td>
+                        <td>{{product.quantity}}</td>
+                        <td>{{product.get_price}} € </td>
+                        <td><a href="{% url 'shoppingcart-delete' product.id %}">{% trans 'Supprimer' %}</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>{% trans "Total de produits" %}</td>
+                    <td>{{cart.get_all_products_quantity}}</td>
+                    <td>{% trans "Prix total : " %}{{total_price}}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    {% endif %}
+</div>
+{% endwith %}
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base-not-connected.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans 'Connexion' %}{% endblock %}
+
+{% block content %}
+    <!-- Login Form -->
+    <form class="login-form" method="post">
+        {% csrf_token %}
+        <div class="field">
+            <p>{% trans "Email" %}</p>
+            {{ form.email }}
+        </div>
+        <div class="field">
+            <p>{% trans "Mot de passe" %}</p>
+            {{ form.password }}
+        </div>
+        <p>{% trans "Vous n'avez pas de compte ?"%} <a href="{% url 'register' %}">{% trans "Créez-en un !" %}</a></p>
+        <button class="submit-button" type="submit">{% trans "Se connecter" %}</button>
+    </form>
+{% endblock %}

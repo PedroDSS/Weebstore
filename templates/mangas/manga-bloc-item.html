@@ -1,0 +1,27 @@
+{% load static %}
+{% load i18n %}
+
+<div class="manga-container searchable" data-id="{{manga.id}}" data-name="{{manga.title}}">
+    <div class="manga-image-container">
+        <img src="{{manga.get_picture_url}}" />
+    </div>
+    <div class="manga-title-container">
+        <span>{{manga.title}} {% trans "Volume n°" %}{{manga.volume}}</span>
+    </div>
+    <div class="manga-author-container">
+        <span>{{manga.author}}</span>
+    </div>
+    <div class="manga-price-container">
+        <span>{{manga.price}}€</span>
+    </div>
+    <div class="manga-rate-container">
+        <span>{{manga.rate}}</span> 
+        {% comment %} + nombre de commentaire dans le model manga  {% endcomment %}
+    </div>
+    <div class="manga-action-container">
+        <div class="manga-buttons-container">
+            <a href="{% url 'manga-details' manga.title manga.id %}" >{% trans "Plus de détails" %}</a>
+        {% comment %} Dans la page de détails rajouter une partie commentaire eventuellement {% endcomment %}
+        </div>
+    </div>
+</div>
